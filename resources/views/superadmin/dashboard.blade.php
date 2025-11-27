@@ -5,57 +5,86 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="w-64 bg-primary shadow-xl transition-all duration-300 ease-in-out">
         <div class="h-full flex flex-col">
-            <!-- Logo/Brand -->
-            <div class="px-6 py-6 border-b border-white border-opacity-10">
-                <h1 class="text-2xl font-bold text-white sidebar-text">{{ $theme['system_name'] }}</h1>
-                <p class="text-xs text-white text-opacity-70 mt-1 sidebar-text">Super Admin Panel</p>
+            <!-- Logo/Brand - Fixed Height -->
+            <div class="px-6 py-6 border-b border-white border-opacity-10 h-24 flex items-center justify-center">
+                <div class="sidebar-text text-center">
+                    <h1 class="text-2xl font-bold text-white">{{ $theme['system_name'] }}</h1>
+                    <p class="text-xs text-white text-opacity-70 mt-1">Super Admin Panel</p>
+                </div>
+                <div class="sidebar-icon hidden">
+                    <div class="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">{{ substr($theme['system_name'], 0, 1) }}</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Navigation -->
-            <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
+            <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto relative">
                 <!-- Collapse Button -->
-                <button onclick="toggleSidebar()" class="w-full mb-4 p-2 rounded-lg bg-white bg-opacity-10 hover:bg-opacity-20 transition text-white text-sm flex items-center justify-center">
-                    <svg class="w-4 h-4 mr-2 sidebar-text" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
-                    </svg>
-                    <span class="sidebar-text">Collapse</span>
+                <button id="collapseBtn" onclick="toggleSidebar()" 
+                        class="absolute top-2 right-2 w-8 h-8 rounded-md bg-white text-primary hover:bg-gray-100 transition flex items-center justify-center shadow-sm border border-gray-200 mb-4"
+                        title="Collapse sidebar">
+                    <span class="text-sm font-bold">‹</span>
                 </button>
-
+                
+                <!-- Add spacing for the button -->
+                <div class="h-6"></div>
+                
                 <!-- Dashboard - Active -->
-                <a href="{{ route('superadmin.dashboard') }}" class="flex items-center px-4 py-3 bg-white rounded-lg shadow-sm group">
-                    <svg class="w-5 h-5 text-primary mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="{{ route('superadmin.dashboard') }}" 
+                   class="flex items-center px-4 py-3 bg-white rounded-lg shadow-sm group justify-start sidebar-expanded justify-center sidebar-collapsed"
+                   title="Dashboard">
+                    <svg class="w-5 h-5 text-primary sidebar-expanded-icon mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                     </svg>
                     <span class="font-semibold text-primary sidebar-text">Dashboard</span>
                 </a>
                 
                 <!-- Admins -->
-                <a href="#" class="flex items-center px-4 py-3 text-white text-opacity-90 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
-                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="#" 
+                   class="flex items-center px-4 py-3 text-white text-opacity-90 hover:bg-white hover:text-primary rounded-lg transition group justify-start sidebar-expanded justify-center sidebar-collapsed"
+                   title="Admins">
+                    <svg class="w-5 h-5 sidebar-expanded-icon mr-3 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
                     <span class="font-medium sidebar-text">Admins</span>
                 </a>
 
                 <!-- Sellers -->
-                <a href="#" class="flex items-center px-4 py-3 text-white text-opacity-90 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
-                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="#" 
+                   class="flex items-center px-4 py-3 text-white text-opacity-90 hover:bg-white hover:text-primary rounded-lg transition group justify-start sidebar-expanded justify-center sidebar-collapsed"
+                   title="Sellers">
+                    <svg class="w-5 h-5 sidebar-expanded-icon mr-3 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                     </svg>
                     <span class="font-medium sidebar-text">Sellers</span>
                 </a>
 
                 <!-- Plans -->
-                <a href="#" class="flex items-center px-4 py-3 text-white text-opacity-90 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
-                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="#" 
+                   class="flex items-center px-4 py-3 text-white text-opacity-90 hover:bg-white hover:text-primary rounded-lg transition group justify-start sidebar-expanded justify-center sidebar-collapsed"
+                   title="Plans">
+                    <svg class="w-5 h-5 sidebar-expanded-icon mr-3 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
                     <span class="font-medium sidebar-text">Plans</span>
                 </a>
 
+                <!-- Notifications -->
+                <a href="{{ route('superadmin.settings.notifications') }}" 
+                   class="flex items-center px-4 py-3 text-white text-opacity-90 hover:bg-white hover:text-primary rounded-lg transition group justify-start sidebar-expanded justify-center sidebar-collapsed"
+                   title="Notifications">
+                    <svg class="w-5 h-5 sidebar-expanded-icon mr-3 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                    </svg>
+                    <span class="font-medium sidebar-text">Notifications</span>
+                </a>
+
                 <!-- Settings -->
-                <a href="#" class="flex items-center px-4 py-3 text-white text-opacity-90 hover:bg-white hover:bg-opacity-10 rounded-lg transition">
-                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="#" 
+                   class="flex items-center px-4 py-3 text-white text-opacity-90 hover:bg-white hover:text-primary rounded-lg transition group justify-start sidebar-expanded justify-center sidebar-collapsed"
+                   title="Settings">
+                    <svg class="w-5 h-5 sidebar-expanded-icon mr-3 group-hover:text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
@@ -314,17 +343,29 @@
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const sidebarTexts = document.querySelectorAll('.sidebar-text');
+    const sidebarIcons = document.querySelectorAll('.sidebar-icon');
+    const sidebarExpandedIcons = document.querySelectorAll('.sidebar-expanded-icon');
+    const collapseBtn = document.getElementById('collapseBtn');
+    const arrow = collapseBtn.querySelector('span');
     
     if (sidebar.classList.contains('w-64')) {
         // Collapse
         sidebar.classList.remove('w-64');
         sidebar.classList.add('w-20');
         sidebarTexts.forEach(el => el.style.display = 'none');
+        sidebarIcons.forEach(el => el.classList.remove('hidden'));
+        // Remove margin from icons when collapsed
+        sidebarExpandedIcons.forEach(el => el.classList.remove('mr-3'));
+        arrow.textContent = '›'; // Arrow points right when collapsed
     } else {
         // Expand
         sidebar.classList.remove('w-20');
         sidebar.classList.add('w-64');
         sidebarTexts.forEach(el => el.style.display = '');
+        sidebarIcons.forEach(el => el.classList.add('hidden'));
+        // Add margin back to icons when expanded
+        sidebarExpandedIcons.forEach(el => el.classList.add('mr-3'));
+        arrow.textContent = '‹'; // Arrow points left when expanded
     }
 }
 </script>

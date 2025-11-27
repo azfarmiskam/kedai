@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\SuperAdmin\NotificationSettingsController;
 
 // Public routes
 Route::get('/', function () {
@@ -20,6 +21,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', function () {
             return view('superadmin.dashboard');
         })->name('superadmin.dashboard');
+        
+        // Notification Settings
+        Route::get('/settings/notifications', [NotificationSettingsController::class, 'index'])->name('superadmin.settings.notifications');
+        Route::put('/settings/notifications', [NotificationSettingsController::class, 'update'])->name('superadmin.settings.notifications.update');
+        Route::post('/settings/notifications/test-telegram', [NotificationSettingsController::class, 'testTelegram'])->name('superadmin.settings.notifications.test-telegram');
+        Route::post('/settings/notifications/test-whatsapp', [NotificationSettingsController::class, 'testWhatsApp'])->name('superadmin.settings.notifications.test-whatsapp');
     });
 
     // Admin routes
