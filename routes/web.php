@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SuperAdmin\NotificationSettingsController;
+use App\Http\Controllers\SuperAdmin\AdminController;
 
 // Public routes
 Route::get('/', function () {
@@ -21,6 +22,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/dashboard', function () {
             return view('superadmin.dashboard');
         })->name('superadmin.dashboard');
+        
+        // Admin Management - Explicit routes with plural naming
+        Route::get('/admins', [AdminController::class, 'index'])->name('superadmin.admins.index');
+        Route::get('/admins/create', [AdminController::class, 'create'])->name('superadmin.admins.create');
+        Route::post('/admins', [AdminController::class, 'store'])->name('superadmin.admins.store');
+        Route::get('/admins/{admin}/edit', [AdminController::class, 'edit'])->name('superadmin.admins.edit');
+        Route::put('/admins/{admin}', [AdminController::class, 'update'])->name('superadmin.admins.update');
+        Route::delete('/admins/{admin}', [AdminController::class, 'destroy'])->name('superadmin.admins.destroy');
+        Route::post('/admins/{admin}/toggle-status', [AdminController::class, 'toggleStatus'])->name('superadmin.admins.toggle-status');
         
         // Notification Settings
         Route::get('/settings/notifications', [NotificationSettingsController::class, 'index'])->name('superadmin.settings.notifications');
