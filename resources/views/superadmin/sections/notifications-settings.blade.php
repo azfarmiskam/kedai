@@ -1,3 +1,5 @@
+@include('superadmin.sections._header', ['title' => 'Notification Settings'])
+
 <div class="p-8">
     <div class="max-w-7xl mx-auto">
         <!-- Header -->

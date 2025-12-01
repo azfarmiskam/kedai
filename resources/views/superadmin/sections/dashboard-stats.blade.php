@@ -1,20 +1,4 @@
-<!-- Top Bar -->
-<header class="bg-white shadow-sm z-10">
-    <div class="px-8 py-4">
-        <div class="flex items-center justify-between">
-            <div>
-                <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
-                <p class="text-sm text-gray-600 mt-1">Welcome back, {{ auth()->user()->name }}!</p>
-            </div>
-            <div class="flex items-center space-x-4">
-                <x-language-switcher />
-                <div class="text-sm text-gray-600">
-                    {{ now()->format('l, F j, Y') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
+@include('superadmin.sections._header', ['title' => 'Dashboard'])
 
 <!-- Dashboard Content -->
 <main class="flex-1 overflow-y-auto bg-gray-50 p-8">

@@ -1,3 +1,5 @@
+@include('superadmin.sections._header', ['title' => 'Admin Management'])
+
 <div class="p-8">
     <!-- Header -->
     <div class="flex items-center justify-between mb-8">

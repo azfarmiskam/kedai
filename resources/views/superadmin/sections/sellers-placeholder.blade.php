@@ -1,3 +1,5 @@
+@include('superadmin.sections._header', ['title' => 'Seller Management'])
+
 <div class="p-8">
     <div class="max-w-4xl mx-auto text-center py-16">
         <svg class="w-24 h-24 mx-auto mb-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
