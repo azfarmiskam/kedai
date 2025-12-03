@@ -9,6 +9,24 @@
 ## Phase 2: Core Infrastructure
 - [x] Multi-tenancy setup
 - [x] Authentication system with role-based access
+- [x] Dynamic theming system (colors, logo, favicon)
+- [x] Multi-language support (EN, MY, ID, ZH, IN)
+- [x] Notification system (success/error messages)
+- [x] Math captcha implementation
+
+## Phase 3: Super Admin Module
+- [x] Super Admin dashboard (SPA-style with dynamic content switching)
+- [x] Shared header component across all sections
+- [x] Enhanced notification system (top-right, auto-dismiss, menu-click dismiss)
+- [x] Admin management (CRUD, roles, permissions)
+- [ ] System settings (general, payment integration, subscription plans)
+- [x] Notification system (WhatsApp & Telegram for new seller registration)
+- [ ] Seller management
+- [ ] Analytics dashboard
+- [ ] Activity logging
+
+## Phase 4: Admin Module
+- [ ] Admin dashboard
 - [ ] Limited admin management
 - [ ] Seller management views
 - [ ] Analytics dashboard
